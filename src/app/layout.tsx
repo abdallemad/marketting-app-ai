@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Cairo } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
+import Providers from "./providers";
 
 const cairo = Cairo({
-  weight:['200','300','400','600','700'],
-  subsets:['arabic']
+  weight: ['200', '300', '400', '600', '700'],
+  subsets: ['arabic']
 })
 export const metadata: Metadata = {
   title: "Ai Marketing Platform",
@@ -23,7 +24,9 @@ export default function RootLayout({
         <body
           className={`${cairo.className} antialiased`}
         >
-          {children}
+          <Providers>
+            {children}
+          </Providers>
         </body>
       </html>
     </ClerkProvider>
