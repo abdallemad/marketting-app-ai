@@ -33,7 +33,28 @@ export default function SignUpPage() {
                   </CardHeader>
                   <CardContent className="grid gap-y-4">
                     <div className="grid grid-cols-1 gap-y-4">
-                      <Clerk.Connection name="github" asChild>
+                      <Clerk.Connection name="tiktok" asChild>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          type="button"
+                          disabled={isGlobalLoading}
+                        >
+                          <Clerk.Loading scope="provider:google">
+                            {(isLoading) =>
+                              isLoading ? (
+                                <Icons.spinner className="size-4 animate-spin" />
+                              ) : (
+                                <>
+                                  <Icons.tiktok className="mr-2 size-4" />
+                                  Tiktok
+                                </>
+                              )
+                            }
+                          </Clerk.Loading>
+                        </Button>
+                      </Clerk.Connection>
+                      <Clerk.Connection name="facebook" asChild>
                         <Button
                           size="sm"
                           variant="outline"
@@ -46,8 +67,8 @@ export default function SignUpPage() {
                                 <Icons.spinner className="size-4 animate-spin" />
                               ) : (
                                 <>
-                                  <Icons.gitHub className="mr-2 size-4" />
-                                  GitHub
+                                  <Icons.facebook className="mr-2 size-4 text-blue-600" />
+                                  facebook
                                 </>
                               )
                             }
@@ -115,7 +136,7 @@ export default function SignUpPage() {
                         </Button>
                       </SignUp.Action>
                       <Button variant="link" size="sm" asChild>
-                        <Clerk.Link navigate="sign-in">{'هل بالفعل تمتلك حساب؟ تسجيل الدخول'}</Clerk.Link>
+                        <Link href="/sign-in">{'هل بالفعل تمتلك حساب؟ تسجيل الدخول'}</Link>
                       </Button>
                     </div>
                   </CardFooter>

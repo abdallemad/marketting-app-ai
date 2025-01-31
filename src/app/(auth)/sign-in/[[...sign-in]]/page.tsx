@@ -15,11 +15,13 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Icons } from '@/components/ui/icons'
 import { cn } from '@/lib/utils'
+import { Loader } from 'lucide-react'
 
 export default function SignInPage() {
+  
   return (
     <div className="grid w-full grow items-center px-4 sm:justify-center">
-      <SignIn.Root >
+      <SignIn.Root fallback={<Loader className='size-8 animate-spin' />}>
         <Clerk.Loading>
           {(isGlobalLoading) => (
             <>
@@ -31,21 +33,21 @@ export default function SignInPage() {
                   </CardHeader>
                   <CardContent className="grid gap-y-4">
                     <div className="grid grid-cols-1 gap-y-4">
-                      <Clerk.Connection name="github" asChild>
+                      <Clerk.Connection name="tiktok" asChild>
                         <Button
                           size="sm"
                           variant="outline"
                           type="button"
                           disabled={isGlobalLoading}
                         >
-                          <Clerk.Loading scope="provider:github">
+                          <Clerk.Loading scope="provider:google">
                             {(isLoading) =>
                               isLoading ? (
                                 <Icons.spinner className="size-4 animate-spin" />
                               ) : (
                                 <>
-                                  <Icons.gitHub className="mr-2 size-4" />
-                                  GitHub
+                                  <Icons.tiktok className="mr-2 size-4" />
+                                  Tiktok
                                 </>
                               )
                             }
@@ -67,6 +69,27 @@ export default function SignInPage() {
                                 <>
                                   <Icons.google className="mr-2 size-4" />
                                   Google
+                                </>
+                              )
+                            }
+                          </Clerk.Loading>
+                        </Button>
+                      </Clerk.Connection>
+                      <Clerk.Connection name="facebook" asChild>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          type="button"
+                          disabled={isGlobalLoading}
+                        >
+                          <Clerk.Loading scope="provider:github">
+                            {(isLoading) =>
+                              isLoading ? (
+                                <Icons.spinner className="size-4 animate-spin" />
+                              ) : (
+                                <>
+                                  <Icons.facebook className="mr-2 size-4 text-blue-600" />
+                                  facebook
                                 </>
                               )
                             }
@@ -104,9 +127,9 @@ export default function SignInPage() {
                       </SignIn.Action>
 
                       <Button variant="link" size="sm" asChild>
-                        <Clerk.Link navigate="sign-up">
+                        <Link href="/sign-up">
                           {'انشاء حساب جديد'}
-                        </Clerk.Link>
+                        </Link>
                       </Button>
                     </div>
                   </CardFooter>
